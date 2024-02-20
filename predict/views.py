@@ -1,18 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.shortcuts import render, redirect
+from .forms import ImageUploadForm
 # Create your views here.
 def upload(request):
-    return render(request, 'upload.html')
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
 
-def logo(request):
-    return render(request, 'index.html')
+            return redirect('success_page') 
+    else:
+        form = ImageUploadForm()
 
-def error(request):
-    return render(request, 'index.html')
-
-def complete(request):
-    return render(request, 'index.html')
-
-def index(request):
-    return render(request, 'index.html')
+    return render(request, 'upload.html', {'form': form})
