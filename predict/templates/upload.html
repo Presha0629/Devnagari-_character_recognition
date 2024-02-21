@@ -64,7 +64,7 @@
 <body>
    <div>
     <header><h2>Predict Character</h2></header>
-    <form method="post" action="{% url 'predict:prediction' %}">
+    <form method="post"  enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Predict</button>
