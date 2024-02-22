@@ -2,7 +2,7 @@ from django.db import models
 import cv2
 import os
 from django.conf import settings
-# from ML.Main import main
+from ML.Main import main
 
 class Character(models.Model):
     image = models.ImageField(upload_to="images", blank=False, null=False)
@@ -16,5 +16,6 @@ class Character(models.Model):
         return super().save(*args, *kwargs)
     
     def predict_character(self):
-        Path = os.path.join(settings.MEDIA_ROOT, self.image.name)
-        print("DEBUG::Read value type = ", type(cv2.imread(Path)))
+        # Path = os.path.join(settings.MEDIA_ROOT, self.image.name)
+        # print("DEBUG::Read value type = ", type(cv2.imread(Path)))
+        main(self.image.name)

@@ -17,5 +17,4 @@ def upload(request):
     return render(request, 'upload.html', {'form': form})
 
 def prediction(request):
-    print(request.POST)
     return render(request, "prediction.html")

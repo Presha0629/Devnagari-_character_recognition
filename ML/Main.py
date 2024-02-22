@@ -9,16 +9,17 @@ from ML import Predict_Characters
 from django.conf import settings
 
 def main(image_name):
-    Path = os.path.join(settings.MEDIA_ROOT, "images", image_name)
-    # print("DEBUG::type = ", type(cv2.imread(Path)))
-#     Words = Split_Words.Split(cv2.imread(os.path.join(Path, image_name)))
-#     Characters = Split_Characters.Split(Words)
-#     Predictions = Predict_Characters.Predict(Characters)
+    Path = os.path.join(settings.MEDIA_ROOT, image_name)
+    # print("DEBUG::Read value type = ", type(cv2.imread(Path)))
 
-#     Words = []
-#     for Prediction in Predictions:
-#         Word = ''.join(Prediction)
-#         Words.append(Word)
-#     Words = ' '.join(Words)
+    Words = Split_Words.Split(cv2.imread(Path))
+    Characters = Split_Characters.Split(Words)
+    Predictions = Predict_Characters.Predict(Characters)
 
-#     print(Words)
+    Words = []
+    for Prediction in Predictions:
+        Word = ''.join(Prediction)
+        Words.append(Word)
+    Words = ' '.join(Words)
+
+    print(Words)

@@ -62,7 +62,7 @@ def Predict(Characters, Evaluate = False):
             y = np.array([np.argmax(Model.predict(x)) for Model in Models])
 
             Model_Prediction.append(y)
-            Prediction.append(Label_Dict[stats.mode(y)[0][0]])
+            Prediction.append(Label_Dict[stats.mode(y)[0]])
 
         Predictions.append(copy.deepcopy(Prediction))
         Model_Predictions.append(copy.deepcopy(Model_Prediction))
