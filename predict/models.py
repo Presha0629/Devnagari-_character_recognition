@@ -1,8 +1,11 @@
 from django.db import models
-from ML.Main import main
+import cv2
+import os
+from django.conf import settings
+# from ML.Main import main
 
 class Character(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(upload_to="images", blank=False, null=False)
     actual_character = models.CharField(max_length=10)
     predicted_character = models.CharField(max_length=10)
 
@@ -10,5 +13,8 @@ class Character(models.Model):
         return self.actual_character
 
     def save(self, *args, **kwargs):
-        
         return super().save(*args, *kwargs)
+    
+    def predict_character(self):
+        Path = os.path.join(settings.MEDIA_ROOT, self.image.name)
+        print("DEBUG::Read value type = ", type(cv2.imread(Path)))
