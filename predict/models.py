@@ -18,4 +18,4 @@ class Character(models.Model):
     def predict_character(self):
         # Path = os.path.join(settings.MEDIA_ROOT, self.image.name)
         # print("DEBUG::Read value type = ", type(cv2.imread(Path)))
-        main(self.image.name)
+        return (main(self.image.name))

@@ -9,7 +9,9 @@ def upload(request):
         if form.is_valid():
             posted = form.save(commit=True)
             character = Character.objects.get(id=posted.id)
-            character.predict_character()
+            predicted_value = character.predict_character()
+            print("DEBUG:: Predicted Character is = ", predicted_value)
+            request.session['p_char'] = predicted_value
             return redirect(reverse('predict:prediction')) 
     else:
         form = ImageUploadForm()
@@ -17,4 +19,6 @@ def upload(request):
     return render(request, 'upload.html', {'form': form})
 
 def prediction(request):
-    return render(request, "prediction.html")
+    character = request.session['p_char']
+    print("DEBUG:: Does character get here? Character = ", character)
+    return render(request, "prediction.html", {"character": character})

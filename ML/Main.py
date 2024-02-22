@@ -22,4 +22,4 @@ def main(image_name):
         Words.append(Word)
     Words = ' '.join(Words)
 
-    print(Words)
+    return(Words)
